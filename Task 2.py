@@ -8,11 +8,11 @@ deposit_account = {
     "is_active": True
 }
 
-def new_balance(deposit_account) -> dict:
-    suma = deposit_account["balance"] * deposit_account["interest_rate"]
-    deposit_account["balance"] += suma
-    deposit_account["last_update_type"] = "interest accrual"
-    deposit_account["is_active"] = False
-    return deposit_account
+def new_balance(deposit_accounts) -> dict:
+    suma = deposit_accounts["balance"] * deposit_accounts["interest_rate"]
+    deposit_accounts["balance"] += suma
+    deposit_accounts["last_update_type"] = "interest accrual"
+    deposit_accounts["is_active"] = False
+    return deposit_accounts
 
 print(json.dumps(new_balance(deposit_account), indent=2))
