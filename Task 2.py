@@ -1,3 +1,5 @@
+import json
+
 deposit_account = {
     "client_id": "C1025",
     "balance": 5000.0,
@@ -6,13 +8,11 @@ deposit_account = {
     "is_active": True
 }
 
-suma = deposit_account["balance"] * deposit_account["interest_rate"]
-print(suma)
+def new_balance(deposit_account) -> dict:
+    suma = deposit_account["balance"] * deposit_account["interest_rate"]
+    deposit_account["balance"] += suma
+    deposit_account["last_update_type"] = "interest accrual"
+    deposit_account["is_active"] = False
+    return deposit_account
 
-deposit_account["balance"] += suma
-
-deposit_account["last_update_type"] = "interest accrual"
-
-deposit_account["is_active"] = False
-
-print(deposit_account)
+print(json.dumps(new_balance(deposit_account), indent=2))
