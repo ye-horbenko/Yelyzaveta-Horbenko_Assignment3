@@ -8,13 +8,14 @@ book_profile = {
     }
 }
 
-print(book_profile["title"])
-print(book_profile["author"])
+name = book_profile["title"]
+author = book_profile["author"]
+print(f"Назва: {name}, автор: {author}")
 
-print(book_profile["publisher_info"]["name"])
+publisher = book_profile["publisher_info"]["name"]
+print(f"Видавництво: {publisher}")
 
-print(f"Книга '{book_profile["publisher_info"]["name"]}' автора була видана у місті "
-      f"{book_profile["publisher_info"]["city"]}")
+print(f"Книга '{name}' автора {author} була видана у місті {book_profile["publisher_info"]["city"]}")
 
 if book_profile["year"]:
     print(book_profile["year"])
