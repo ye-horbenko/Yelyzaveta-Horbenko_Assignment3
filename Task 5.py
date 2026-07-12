@@ -1,3 +1,5 @@
+import json
+
 sales_data = [
     {"product": "Смартфон", "category": "Електроніка",
 "quantity": 1, "price": 15000},
@@ -13,8 +15,14 @@ sales_data = [
 "quantity": 1, "price": 32000}
 ]
 
-category_report = []
+category_report = {}
 
 for data in sales_data:
     category = data["category"]
+    if category not in category_report:
+        category_report[category] = {'total_revenue': 0, 'total_items_sold': 0}
+    category_report[category]['total_revenue'] += data["quantity"] * data["price"]
+    category_report[category]['total_items_sold'] += data["quantity"]
+
+print(json.dumps(category_report, indent=4, ensure_ascii=False))
     
