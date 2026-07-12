@@ -1,3 +1,5 @@
+import json
+
 employees = [
     {"name": "Олена", "department": "Marketing", "salary":
 25000},
@@ -17,21 +19,23 @@ def get_department_stats(employee_list, target_debt):
             department_stats.append(employee)
             count += 1
 
-    total_salary = sum(employee["salary"] for employee in employee_list)
-    average_salary = total_salary / len(employee_list)
-    top_earner = max(employee["salary"] for employee in employee_list)
+    total_salary = 0
+    average_salary = 0
+    for department in department_stats:
+        total_salary += department["salary"]
+        average_salary = total_salary / count
 
     return {
         "department": target_debt,
         "average_salary": average_salary,
-        "top_earner": top_earner["name"],
-        "count": count,
+        "top_earner": max(department_stats, key=lambda x: x["salary"])["name"],
+        "count": count
     }
 
 result1 = get_department_stats(employees, "Marketing")
-print(result1)
+print(json.dumps(result1, indent=2, ensure_ascii=False))
 
 result2 = get_department_stats(employees, "IT")
-print(result2)
+print(json.dumps(result2, indent=2, ensure_ascii=False))
 
 
