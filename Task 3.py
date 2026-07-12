@@ -1,3 +1,5 @@
+import json
+
 exam_results = [
     {"student_name": "Анна", "score": 91},
     {"student_name": "Богдан", "score": 58},
@@ -6,10 +8,11 @@ exam_results = [
 ]
 passing_score = 60 # Прохідний бал
 
-for exam in exam_results:
-    if exam["score"] >= passing_score:
-        exam["passed"] = True
-    else:
-        exam["passed"] = False
-
-print(exam_results)
+def final_result(exam_result):
+    for exam in exam_result:
+        if exam["score"] >= passing_score:
+            exam["passed"] = True
+        else:
+            exam["passed"] = False
+    return exam_result
+print(json.dumps(final_result(exam_results), indent=2, ensure_ascii=False))
